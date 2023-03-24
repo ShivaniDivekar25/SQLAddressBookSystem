@@ -43,10 +43,30 @@ SELECT * FROM AddressBook_DB WHERE City='Pune'OR State='Maharastra';
 SELECT COUNT(FirstName) FROM AddressBook_DB WHERE City='Pune' AND State='Maharastra';
 
 --Ability sort alphabatically person's name for given City UC8
-SELECT * FROM AddressBook_DB ORDER BY City ASC
+SELECT * FROM AddressBook_DB AS CityCount ORDER BY City ASC;
 
 --Ability to alter table to addressbook name and type UC9
 ALTER TABLE AddressBook_DB ADD Name VARCHAR(30);
 ALTER TABLE AddressBook_DB ADD Family VARCHAR(30);
 ALTER TABLE AddressBook_DB ADD Friends VARCHAR(30);
 ALTER TABLE AddressBook_DB ADD Profession VARCHAR(30);
+
+--Ability to get count of Person's contcat by city UC10
+SELECT COUNT(FirstName) FROM AddressBook_DB AS CountByCity WHERE City='Pune';
+
+--Ability to upadate friends and family UC11
+INSERT INTO AddressBook_DB(FirstName,LastName,Address,City,State,Zip,PhoneNumber,Email,AddressBookType,AddressBookName) VALUES('Shraddha','Divekar','Budhagav','Sangli','Maharastra',4003,4563218790,'shraddha@gmail.com','Family','Shri'),('Monika','Shetty','Karad','Satara','Maharastra',4008,8983922605,'Monika@gamil.com','Friends,Family','Moni'),('Siddhi','Reelkar','Chipalun','Ratnagiri','Maharastra',4023,7875842360,'Siddhi@gmail.com','Family','Sid');
+
+--Draw ER daigram for AddressBook UC12
+CREATE TABLE AddressBook_Table(
+PersonID INT PRIMARY KEY IDENTITY(1,1),
+FirstName VARCHAR(30) NOT NULL,
+LastName VARCHAR(30) NOT NULL,
+Address VARCHAR(150) NOT NULL,
+City VARCHAR(30) NOT NULL,
+State VARCHAR(30) NOT NULL,
+Zip INT NOT NULL,
+PhoneNumber BIGINT NOT NULL,
+Email VARCHAR(50) NOT NULL
+);
+SELECT * FROM AddressBook_DB_TABLE;
