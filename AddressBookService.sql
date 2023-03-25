@@ -70,3 +70,34 @@ PhoneNumber BIGINT NOT NULL,
 Email VARCHAR(50) NOT NULL
 );
 SELECT * FROM AddressBook_DB_TABLE;
+
+--FOREIGN KEY - It will establish two connections between two table, it will point primary key in another table.
+CREATE TABLE Address_Book_Join(
+AddressBookID INT PRIMARY KEY IDENTITY(1,1),
+PersonID INT,
+FOREIGN KEY (PersonID) REFERENCES AddressBook_DB(PersonID)
+);
+SELECT * FROM Address_Book_Join;
+
+INSERT INTO Address_Book_Join (PersonID) VALUES(1),(3),(2),(5),(6);
+--Inner join
+--Select TableName1.Column1,...From TableName1 Inner Join TableName2 on 
+--TableName1.macthingColumn = TableName2.MatchingColumn
+
+SELECT AddressBook_DB.PersonID, AddressBook_DB.FirstName FROM AddressBook_DB INNER JOIN Address_Book_Join ON AddressBook_DB.PersonID=Address_Book_Join.AddressBookID;
+
+--Left join
+--Select TableName1.Column1,...From TableName1 Left Join TableName2 on 
+--TableName1.macthingColumn = TableName2.MatchingColumn
+SELECT AddressBook_DB.PersonID, AddressBook_DB.AddressBookName FROM AddressBook_DB LEFT JOIN Address_Book_Join ON AddressBook_DB.PersonID=Address_Book_Join.AddressBookID;
+
+--Right join
+--Select TableName1.Column1,...From TableName1 Right Join TableName2 on 
+--TableName1.macthingColumn = TableName2.MatchingColumn
+SELECT AddressBook_DB.PersonID, AddressBook_DB.AddressBookName FROM AddressBook_DB RIGHT JOIN Address_Book_Join ON AddressBook_DB.PersonID=Address_Book_Join.AddressBookID;
+
+--Full join
+--Select TableName1.Column1,...From TableName1 Full Join TableName2 on 
+--TableName1.macthingColumn = TableName2.MatchingColumn
+SELECT AddressBook_DB.PersonID, AddressBook_DB.AddressBookName FROM AddressBook_DB FULL JOIN Address_Book_Join ON AddressBook_DB.PersonID=Address_Book_Join.AddressBookID;
+
